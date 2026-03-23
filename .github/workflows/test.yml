@@ -1,0 +1,40 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Create virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+    
+    - name: Install dependencies
+      run: |
+        source venv/bin/activate
+        pip install -r requirements.txt
+    
+    - name: Process data
+      run: |
+        source venv/bin/activate
+        python process_data.py
+    
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        bash run_tests.sh
