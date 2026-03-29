@@ -191,7 +191,7 @@ app.layout = html.Div([
     html.Div([
         html.H1("🌸 Pink Morsel Sales Dashboard 🌸"),
         html.P("Interactive Sales Analysis | Filter by Region")
-    ], className="header" id="header"),
+    ], className="header", id="header"),
     
     # Main container
     html.Div([
